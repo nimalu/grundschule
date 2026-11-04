@@ -26,9 +26,6 @@ function setRightLetter(event: Event) {
     <NuxtRouteAnnouncer />
 
     <main class="reader-page">
-      <header class="page-heading">
-        <h1>Leseroboter</h1>
-      </header>
 
       <section class="robot-card" aria-label="Leseroboter einstellen">
         <div class="robot-stage">
@@ -54,16 +51,13 @@ function setRightLetter(event: Event) {
             spellcheck="false"
           />
 
-          <svg
+          <img
             :key="animationKey"
             class="nose-arrow"
             :class="{ 'swing-right': arrowSwung }"
-            viewBox="0 0 240 50"
-            role="img"
-            aria-label="Pfeil schwenkt zwischen den Augen von links nach rechts"
-          >
-            <path d="M 120 25 H 8 M 8 25 L 26 9 M 8 25 L 26 41" />
-          </svg>
+            src="/Pfeil.png"
+            alt="Pfeil schwenkt zwischen den Augen von links nach rechts"
+          />
         </div>
 
         <div class="button-row">
@@ -100,7 +94,12 @@ function setRightLetter(event: Event) {
 :root {
   font-family: Grundschrift, "Comic Neue", "Comic Sans MS", "Trebuchet MS", sans-serif;
   color: #1f3b63;
-  background: linear-gradient(180deg, #b8e6ff 0%, #e6f7ff 55%, #fff6d1 100%);
+  background-color: #fffef8;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.25  0 0 0 0 0.3  0 0 0 0 0.35  0 0 0 0.16 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+    linear-gradient(rgb(150 195 230 / 55%) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(150 195 230 / 55%) 1px, transparent 1px);
+  background-size: 200px 200px, 28px 28px, 28px 28px;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -130,39 +129,19 @@ input {
 }
 
 .reader-page {
-  width: min(100%, 1100px);
+  width: min(100%, 1300px);
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 28px;
 }
 
-.page-heading {
-  text-align: center;
-}
-
-
-.page-heading h1 {
-  margin: 0;
-  color: #000;
-  font-size: clamp(2.6rem, 6vw, 3.8rem);
-  font-weight: 700;
-  line-height: 1.1;
-
-}
-
-
 .robot-card {
-  width: min(100%, 1000px);
-  padding: clamp(14px, 3vw, 28px);
+  width: min(100%, 1200px);
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 22px;
-  border: 5px solid #1f3b63;
-  border-radius: 40px;
-  background: #fff;
-  box-shadow: 0 12px 0 #1f3b63;
 }
 
 .robot-stage {
@@ -170,8 +149,6 @@ input {
   width: 100%;
   overflow: hidden;
   line-height: 0;
-  border-radius: 28px;
-  background: #fff;
 }
 
 .robot-image {
@@ -182,16 +159,16 @@ input {
 
 .eye-input {
   position: absolute;
-  top: 17%;
-  width: 16%;
-  height: 34%;
+  top: 14.7%;
+  width: 18%;
+  height: 34.7%;
   padding: 0 2px;
   border: 0;
   border-radius: 20px;
   outline: none;
   background: transparent;
   color: #1f3b63;
-  font-size: clamp(2.2rem, 11vw, 5.2rem);
+  font-size: clamp(4.2rem, 21vw, 10rem);
   font-weight: 700;
   line-height: 1;
   text-align: center;
@@ -205,32 +182,22 @@ input {
 }
 
 .eye-input-left {
-  left: 28.7%;
+  left: 25.2%;
 }
 
 .eye-input-right {
-  left: 57.3%;
+  left: 59.9%;
 }
 
 .nose-arrow {
   position: absolute;
-  top: 35.5%;
-  left: 50%;
-  width: 32%;
+  top: 32%;
+  left: 51.55%;
+  width: 22.1%;
   height: auto;
-  overflow: visible;
-  transform: translateX(-50%) rotate(-45deg);
-  transform-origin: 50% 50%;
+  transform: translate(-2.6%, -50%) rotate(144.5deg);
+  transform-origin: 2.6% 50%;
   pointer-events: none;
-  filter: drop-shadow(3px 0 0 #1f3b63) drop-shadow(-3px 0 0 #1f3b63) drop-shadow(0 3px 0 #1f3b63) drop-shadow(0 -3px 0 #1f3b63);
-}
-
-.nose-arrow path {
-  fill: none;
-  stroke: #ff9f1c;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 26;
 }
 
 .nose-arrow.swing-right {
@@ -239,11 +206,11 @@ input {
 
 @keyframes swing-right {
   from {
-    transform: translateX(-50%) rotate(-45deg);
+    transform: translate(-2.6%, -50%) rotate(144.5deg);
   }
 
   to {
-    transform: translateX(-50%) rotate(-135deg);
+    transform: translate(-2.6%, -50%) rotate(35.5deg);
   }
 }
 
@@ -260,18 +227,16 @@ input {
 
 .swing-button,
 .back-button {
-  width: 84px;
-  height: 84px;
+  width: 120px;
+  height: 120px;
   padding: 0;
   display: grid;
   place-items: center;
-  border: 5px solid #1f3b63;
-  border-radius: 50%;
-  background: linear-gradient(180deg, #8ff07f, #2fb85b);
-  box-shadow: 0 9px 0 #1f3b63;
+  border: 0;
+  background: url("/Knopf.png") center / 180% auto no-repeat;
   color: #fff;
   cursor: pointer;
-  transition: transform 120ms ease, box-shadow 120ms ease, filter 120ms ease;
+  transition: transform 120ms ease, filter 120ms ease;
 }
 
 .swing-button svg,
@@ -294,8 +259,7 @@ input {
 
 .swing-button:active,
 .back-button:active {
-  transform: translateY(7px);
-  box-shadow: 0 2px 0 #1f3b63;
+  transform: translateY(4px);
 }
 
 .swing-button:focus-visible,
@@ -317,18 +281,17 @@ input {
 
   .robot-card {
     gap: 14px;
-    border-radius: 30px;
   }
 
   .eye-input {
     border-radius: 14px;
-    font-size: clamp(1.7rem, 12vw, 3.4rem);
+    font-size: clamp(3.3rem, 22vw, 6.4rem);
   }
 
   .swing-button,
   .back-button {
-    width: 76px;
-    height: 76px;
+    width: 104px;
+    height: 104px;
   }
 }
 
