@@ -52,7 +52,7 @@ function setRightLetter(event: Event) {
 
     <section class="robot-card" aria-label="Leseroboter einstellen">
       <div class="robot-stage">
-        <img class="robot-image" src="/Robo.webp" alt="Ein freundlicher Roboter mit zwei großen Augen" />
+        <img class="robot-image" src="/Robo.webp" width="1600" height="1131" alt="Ein freundlicher Roboter mit zwei großen Augen" />
 
         <input
           v-model="leftLetter"
@@ -83,32 +83,32 @@ function setRightLetter(event: Event) {
           alt="Pfeil schwenkt zwischen den Augen von links nach rechts"
           :style="{ animationDuration: `${animationDuration}ms` }"
         />
-      </div>
 
-      <div class="button-row">
-        <button
-          class="back-button"
-          type="button"
-          aria-label="Pfeil zurück nach links springen lassen"
-          title="Pfeil zurück nach links springen lassen"
-          @click="resetArrow"
-        >
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M20 12H5m6-6-6 6 6 6" />
-          </svg>
-        </button>
+        <div class="button-row">
+          <button
+            class="back-button"
+            type="button"
+            aria-label="Pfeil zurück nach links springen lassen"
+            title="Pfeil zurück nach links springen lassen"
+            @click="resetArrow"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M20 12H5m6-6-6 6 6 6" />
+            </svg>
+          </button>
 
-        <button
-          class="swing-button"
-          type="button"
-          aria-label="Pfeil von links nach rechts schwenken"
-          title="Pfeil von links nach rechts schwenken"
-          @click="swingArrow"
-        >
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M4 12h15m-6-6 6 6-6 6" />
-          </svg>
-        </button>
+          <button
+            class="swing-button"
+            type="button"
+            aria-label="Pfeil von links nach rechts schwenken"
+            title="Pfeil von links nach rechts schwenken"
+            @click="swingArrow"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 12h15m-6-6 6 6-6 6" />
+            </svg>
+          </button>
+        </div>
       </div>
     </section>
 
@@ -260,6 +260,10 @@ function setRightLetter(event: Event) {
 }
 
 .button-row {
+  position: absolute;
+  z-index: 1;
+  top: 77%;
+  left: 47%;
   display: flex;
   align-items: center;
   gap: 2cqw;
