@@ -4,8 +4,15 @@ import { ref } from 'vue'
 const leftLetter = ref('A')
 const rightLetter = ref('b')
 const animationKey = ref(0)
+const arrowSwung = ref(false)
 
 function swingArrow() {
+  arrowSwung.value = true
+  animationKey.value += 1
+}
+
+function resetArrow() {
+  arrowSwung.value = false
   animationKey.value += 1
 }
 
@@ -20,9 +27,7 @@ function setRightLetter(event: Event) {
 
     <main class="reader-page">
       <header class="page-heading">
-        <span class="eyebrow">Dein Lesehelfer</span>
         <h1>Leseroboter</h1>
-        <p>Klicke auf die Buchstaben, um sie zu ändern.</p>
       </header>
 
       <section class="robot-card" aria-label="Leseroboter einstellen">
@@ -52,26 +57,40 @@ function setRightLetter(event: Event) {
           <svg
             :key="animationKey"
             class="nose-arrow"
-            :class="{ 'swing-right': animationKey > 0 }"
+            :class="{ 'swing-right': arrowSwung }"
             viewBox="0 0 240 50"
             role="img"
             aria-label="Pfeil schwenkt zwischen den Augen von links nach rechts"
           >
-            <path d="M 120 25 H 30 M 30 25 L 48 9 M 30 25 L 48 41" />
+            <path d="M 120 25 H 8 M 8 25 L 26 9 M 8 25 L 26 41" />
           </svg>
         </div>
 
-        <button
-          class="swing-button"
-          type="button"
-          aria-label="Pfeil von links nach rechts schwenken"
-          title="Pfeil von links nach rechts schwenken"
-          @click="swingArrow"
-        >
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M4 12h15m-6-6 6 6-6 6" />
-          </svg>
-        </button>
+        <div class="button-row">
+          <button
+            class="back-button"
+            type="button"
+            aria-label="Pfeil zurück nach links springen lassen"
+            title="Pfeil zurück nach links springen lassen"
+            @click="resetArrow"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M20 12H5m6-6-6 6 6 6" />
+            </svg>
+          </button>
+
+          <button
+            class="swing-button"
+            type="button"
+            aria-label="Pfeil von links nach rechts schwenken"
+            title="Pfeil von links nach rechts schwenken"
+            @click="swingArrow"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 12h15m-6-6 6 6-6 6" />
+            </svg>
+          </button>
+        </div>
       </section>
     </main>
   </div>
@@ -79,9 +98,9 @@ function setRightLetter(event: Event) {
 
 <style>
 :root {
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  color: #202a39;
-  background: #f4f6f8;
+  font-family: Grundschrift, "Comic Neue", "Comic Sans MS", "Trebuchet MS", sans-serif;
+  color: #1f3b63;
+  background: linear-gradient(180deg, #b8e6ff 0%, #e6f7ff 55%, #fff6d1 100%);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -111,49 +130,39 @@ input {
 }
 
 .reader-page {
-  width: min(100%, 900px);
+  width: min(100%, 1100px);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 26px;
+  gap: 28px;
 }
 
 .page-heading {
   text-align: center;
 }
 
-.eyebrow {
-  color: #62738b;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-}
 
 .page-heading h1 {
-  margin: 7px 0 5px;
-  font-size: clamp(2rem, 5vw, 3rem);
+  margin: 0;
+  color: #000;
+  font-size: clamp(2.6rem, 6vw, 3.8rem);
+  font-weight: 700;
   line-height: 1.1;
-  letter-spacing: -0.04em;
+
 }
 
-.page-heading p {
-  margin: 0;
-  color: #687588;
-  font-size: clamp(0.9rem, 2vw, 1rem);
-}
 
 .robot-card {
-  width: min(100%, 800px);
-  padding: clamp(12px, 3vw, 26px);
+  width: min(100%, 1000px);
+  padding: clamp(14px, 3vw, 28px);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
-  border: 1px solid #e4e9ef;
-  border-radius: 28px;
+  gap: 22px;
+  border: 5px solid #1f3b63;
+  border-radius: 40px;
   background: #fff;
-  box-shadow: 0 20px 60px rgb(36 51 72 / 9%);
+  box-shadow: 0 12px 0 #1f3b63;
 }
 
 .robot-stage {
@@ -161,7 +170,7 @@ input {
   width: 100%;
   overflow: hidden;
   line-height: 0;
-  border-radius: 18px;
+  border-radius: 28px;
   background: #fff;
 }
 
@@ -178,21 +187,21 @@ input {
   height: 34%;
   padding: 0 2px;
   border: 0;
-  border-radius: 12px;
+  border-radius: 20px;
   outline: none;
   background: transparent;
-  color: #314c70;
-  font-size: clamp(2rem, 11vw, 5rem);
-  font-weight: 750;
+  color: #1f3b63;
+  font-size: clamp(2.2rem, 11vw, 5.2rem);
+  font-weight: 700;
   line-height: 1;
   text-align: center;
-  caret-color: #436a9e;
+  caret-color: #ff6b35;
 }
 
 .eye-input:focus-visible {
-  outline: 3px solid #8eb6e7;
-  outline-offset: -5px;
-  background: rgb(225 237 251 / 45%);
+  outline: 4px dashed #ff8fab;
+  outline-offset: -6px;
+  background: rgb(255 210 63 / 35%);
 }
 
 .eye-input-left {
@@ -213,14 +222,15 @@ input {
   transform: translateX(-50%) rotate(-45deg);
   transform-origin: 50% 50%;
   pointer-events: none;
+  filter: drop-shadow(3px 0 0 #1f3b63) drop-shadow(-3px 0 0 #1f3b63) drop-shadow(0 3px 0 #1f3b63) drop-shadow(0 -3px 0 #1f3b63);
 }
 
 .nose-arrow path {
   fill: none;
-  stroke: #e47b45;
+  stroke: #ff9f1c;
   stroke-linecap: round;
   stroke-linejoin: round;
-  stroke-width: 18;
+  stroke-width: 26;
 }
 
 .nose-arrow.swing-right {
@@ -237,44 +247,61 @@ input {
   }
 }
 
-.swing-button {
-  width: 68px;
-  height: 68px;
+.button-row {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.back-button {
+  background: linear-gradient(180deg, #ffe066, #ffb703);
+  color: #1f3b63;
+}
+
+.swing-button,
+.back-button {
+  width: 84px;
+  height: 84px;
   padding: 0;
   display: grid;
   place-items: center;
-  border: 4px solid #b95432;
+  border: 5px solid #1f3b63;
   border-radius: 50%;
-  background: linear-gradient(145deg, #ffb27c, #ed7044);
-  box-shadow: 0 7px 0 #9f4328, 0 12px 18px rgb(89 50 37 / 20%), inset 0 2px 3px rgb(255 255 255 / 65%);
+  background: linear-gradient(180deg, #8ff07f, #2fb85b);
+  box-shadow: 0 9px 0 #1f3b63;
   color: #fff;
   cursor: pointer;
   transition: transform 120ms ease, box-shadow 120ms ease, filter 120ms ease;
 }
 
-.swing-button svg {
-  width: 30px;
-  height: 30px;
+.swing-button svg,
+.back-button svg {
+  width: 40px;
+  height: 40px;
   fill: none;
   stroke: currentColor;
   stroke-linecap: round;
   stroke-linejoin: round;
-  stroke-width: 2.5;
+  stroke-width: 3.5;
+  filter: drop-shadow(0 2px 0 #1f3b63);
 }
 
-.swing-button:hover {
-  filter: brightness(1.05);
-  transform: translateY(-1px);
+.swing-button:hover,
+.back-button:hover {
+  filter: brightness(1.06);
+  transform: translateY(-2px);
 }
 
-.swing-button:active {
-  transform: translateY(5px);
-  box-shadow: 0 2px 0 #9f4328, 0 4px 8px rgb(89 50 37 / 18%), inset 0 2px 3px rgb(255 255 255 / 55%);
+.swing-button:active,
+.back-button:active {
+  transform: translateY(7px);
+  box-shadow: 0 2px 0 #1f3b63;
 }
 
-.swing-button:focus-visible {
-  outline: 3px solid #8eb6e7;
-  outline-offset: 3px;
+.swing-button:focus-visible,
+.back-button:focus-visible {
+  outline: 4px dashed #ff8fab;
+  outline-offset: 4px;
 }
 
 
@@ -285,22 +312,23 @@ input {
   }
 
   .reader-page {
-    gap: 20px;
+    gap: 22px;
   }
 
   .robot-card {
     gap: 14px;
-    border-radius: 20px;
+    border-radius: 30px;
   }
 
   .eye-input {
-    border-radius: 8px;
-    font-size: clamp(1.5rem, 12vw, 3.2rem);
+    border-radius: 14px;
+    font-size: clamp(1.7rem, 12vw, 3.4rem);
   }
 
-  .swing-button {
-    width: 64px;
-    height: 64px;
+  .swing-button,
+  .back-button {
+    width: 76px;
+    height: 76px;
   }
 }
 
