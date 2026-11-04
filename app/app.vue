@@ -1,13 +1,39 @@
+<script setup lang="ts">
+useHead({
+  link: [{ rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }],
+})
+</script>
+
 <template>
   <div class="page-shell">
     <NuxtRouteAnnouncer />
     <NuxtPage />
+    <p class="font-credit">
+      Schrift: <a href="https://www.cdnfonts.com/grundschrift.font" target="_blank" rel="noopener">Grundschrift</a> von Christian Urff, <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank" rel="noopener">CC BY 3.0</a>
+    </p>
   </div>
 </template>
 
 <style>
+@font-face {
+  font-family: Grundschrift;
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/Grundschrift-Regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: Grundschrift;
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/Grundschrift-Bold.woff") format("woff");
+}
+
 :root {
   font-family: Grundschrift, "Comic Neue", "Comic Sans MS", "Trebuchet MS", sans-serif;
+  color-scheme: light;
   color: #1f3b63;
   background-color: #fffef8;
   background-image:
@@ -41,6 +67,18 @@ input {
   padding: clamp(24px, 5vh, 56px) 20px;
   display: grid;
   place-items: center;
+}
+
+.font-credit {
+  position: fixed;
+  left: 16px;
+  bottom: 12px;
+  margin: 0;
+  font-size: 0.8rem;
+}
+
+.font-credit a {
+  color: inherit;
 }
 
 @media (max-width: 540px) {

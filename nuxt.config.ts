@@ -5,9 +5,7 @@ export default defineNuxtConfig({
   app: {
     head: {
       htmlAttrs: { lang: 'de' },
-      link: [
-        { rel: 'stylesheet', href: 'https://fonts.cdnfonts.com/css/grundschrift' }
-      ]
+      meta: [{ name: 'color-scheme', content: 'light' }]
     }
   }
 })
