@@ -52,7 +52,7 @@ function setRightLetter(event: Event) {
 
     <section class="robot-card" aria-label="Leseroboter einstellen">
       <div class="robot-stage">
-        <img class="robot-image" src="/Robo.png" alt="Ein freundlicher Roboter mit zwei großen Augen" />
+        <img class="robot-image" src="/Robo.webp" alt="Ein freundlicher Roboter mit zwei großen Augen" />
 
         <input
           v-model="leftLetter"
@@ -79,7 +79,7 @@ function setRightLetter(event: Event) {
           :key="animationKey"
           class="nose-arrow"
           :class="{ 'swing-right': arrowSwung }"
-          src="/Pfeil.png"
+          src="/Pfeil.webp"
           alt="Pfeil schwenkt zwischen den Augen von links nach rechts"
           :style="{ animationDuration: `${animationDuration}ms` }"
         />
@@ -278,7 +278,7 @@ function setRightLetter(event: Event) {
   display: grid;
   place-items: center;
   border: 0;
-  background: url("/Knopf.png") center / 180% auto no-repeat;
+  background: url("/Knopf.webp") center / 180% auto no-repeat;
   color: #fff;
   cursor: pointer;
   transition: transform 120ms ease, filter 120ms ease;
@@ -323,7 +323,7 @@ function setRightLetter(event: Event) {
   display: grid;
   place-items: center;
   border: 0;
-  background: url("/Knopf.png") center / 180% auto no-repeat;
+  background: url("/Knopf.webp") center / 180% auto no-repeat;
   color: #fff;
   cursor: pointer;
   transition: transform 120ms ease, filter 120ms ease;
