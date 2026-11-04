@@ -212,7 +212,7 @@ function setRightLetter(event: Event) {
   border-radius: 1.67cqw;
   outline: none;
   background: transparent;
-  color: #1f3b63;
+  color: #0f2340;
   font-size: 13.33cqw;
   font-weight: 700;
   line-height: 1;
