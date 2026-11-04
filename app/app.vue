@@ -1,6 +1,10 @@
 <script setup lang="ts">
 useHead({
-  link: [{ rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }],
+  link: [
+    { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
+    { rel: 'preload', as: 'font', type: 'font/woff', href: '/fonts/Grundschrift-Regular.woff', crossorigin: 'anonymous' },
+    { rel: 'preload', as: 'font', type: 'font/woff', href: '/fonts/Grundschrift-Bold.woff', crossorigin: 'anonymous' },
+  ],
 })
 </script>
 
@@ -19,7 +23,7 @@ useHead({
   font-family: Grundschrift;
   font-style: normal;
   font-weight: 400;
-  font-display: swap;
+  font-display: block;
   src: url("/fonts/Grundschrift-Regular.woff") format("woff");
 }
 
@@ -27,7 +31,7 @@ useHead({
   font-family: Grundschrift;
   font-style: normal;
   font-weight: 700;
-  font-display: swap;
+  font-display: block;
   src: url("/fonts/Grundschrift-Bold.woff") format("woff");
 }
 
@@ -67,6 +71,7 @@ input {
   padding: clamp(24px, 5vh, 56px) 20px;
   display: grid;
   place-items: center;
+  align-content: center;
 }
 
 .font-credit {
